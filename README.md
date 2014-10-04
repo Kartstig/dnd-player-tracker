@@ -11,7 +11,7 @@ The underlying web framework is [Flask](http://flask.pocoo.org/)
 
 ### Create virtualenv
 ```
-$ sudo apt-get install libzmq-dev libevent-dev
+$ sudo apt-get install libzmq-dev libevent-dev libmysqlclient-dev python-dev
 $ mkvirtualenv dnd_players
 $ pip install -r requirements.txt
 ```
