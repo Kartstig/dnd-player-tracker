@@ -1,3 +1,4 @@
 *.pyc
 Config.py
 *.ipynb
+alembic.ini
