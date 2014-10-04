@@ -15,6 +15,11 @@ db = SQLAlchemy(app)
 def index():
 	return render_template('main.html')
 
+@app.route('/races')
+def races():
+	races = db.session.query(Race).all()
+	return render_template('races.html', races=races)
+
 
 if __name__ == '__main__':
     app.run()

@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}DND Player Tracker - Races{% endblock %}
+
+{% block content %}
+<table class="table table-striped table-bordered">
+	<thead>
+		<th>Name</th>
+		<th>Sub Race</th>
+		<th>Lore</th>
+		<th>Strength</th>
+		<th>Dexterity</th>
+		<th>Constitution</th>
+		<th>Intelligence</th>
+		<th>Wisdom</th>
+		<th>Charisma</th>
+		<th>Special</th>
+	</thead>
+	<tbody>
+	{% for r in races %}
+		<tr>
+			<td>{{ r.name }}</td>
+			<td>{{ r.sub_race }}</td>
+			<td>{{ r.lore }}</td>
+			<td>{{ r.strength }}</td>
+			<td>{{ r.strength }}</td>
+			<td>{{ r.dexterity }}</td>
+			<td>{{ r.constitution }}</td>
+			<td>{{ r.intelligence }}</td>
+			<td>{{ r.wisdom }}</td>
+			<td>{{ r.charisma }}</td>
+			<td>{{ r.special }}</td>
+		</tr>
+	{% endfor %}
+	</tbody>
+</table>
+
+{% endblock %}
