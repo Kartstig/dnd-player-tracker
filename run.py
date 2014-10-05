@@ -60,8 +60,15 @@ def races():
 
 @app.route('/signup', methods=["GET", "POST"])
 def signup():
+    error = None
     form = SignupForm()
-    return render_template('signup.html', form=form)
+    if request.method == 'POST':
+        form = SignupForm(request.form)
+        if form.validate():
+            flash("It Worked!")
+        else:
+            error = form.errors
+    return render_template('signup.html', form=form, error=error)
 
 @login_manager.user_loader
 def load_user(userid):
