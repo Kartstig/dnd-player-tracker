@@ -15,7 +15,7 @@ class User(Base, UserMixin):
 
     id              = Column(Integer, primary_key=True)
     username        = Column(String(50), unique=True, nullable=False)
-    password        = Column(String(60))
+    password        = Column(String(60), nullable=False)
     first_name      = Column(String(50))
     last_name       = Column(String(50))
     phone_number    = Column(String(15))
