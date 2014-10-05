@@ -45,6 +45,11 @@
         text-align: center;
     }
 
+    div.errors {
+        margin: 2em;
+        font-size: 1.5em;
+    }
+
 </style>
 {% endblock %}
 
@@ -54,12 +59,19 @@
         <div class="col-md-3"></div>
         <div class="col-md-6">
             <div id="login-box" class="jumbotron">
-                <div class="errors">
-                    {{ form.errors }}
-                    {% if error %}
-                    <p class=error><strong>Error:</strong> {{ error }}
-                    {% endif %}
-                </div>
+                {% if error %}
+                    <div class="panel panel-danger errors">
+                        <div class="panel-heading">Uh oh...</div>
+                        <div class="panel-body">
+                            {% for e, m in error.items() %}
+                                <p>
+                                    <strong>{{ e }}:</strong> {{ " ".join(m) }}
+                                </p>
+                            {% endfor %}
+                        </div>
+                        </ul>
+                    </div>
+                {% endif %}
                 <form id="login-form" role="form" action="/login", method="post">
                     <div class="form-group">
                         {{ form.username.label(class="login-text dnd-text") }}
