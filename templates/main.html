@@ -4,15 +4,9 @@
 
 {% block head %}
 <style type="text/css">
-    html,body { 
-      background: url(static/images/dndback_reduced.jpg) no-repeat center center fixed; 
-      -webkit-background-size: cover;
-      -moz-background-size: cover;
-      -o-background-size: cover;
-      background-size: cover;
-    }
     #login-box {
-        margin-top: 50%;
+        margin-top: 30%;
+        margin-bottom: auto;
         padding: 0.5em;
         border: none;
         border-radius: 1.5em;
@@ -21,14 +15,21 @@
     #login-form {
         margin: 1em;
     }
-    .login-text {
+    label.login-text {
         margin: 0.6em;
         color: rgba(255, 255, 255, 1);
-        font-weight: 800;
-        font-size: 1.5em;
+        font-weight: 400;
+        font-size: 2em;
     }
     #login-btn {
+        margin-top: 2em;
         width: 100%;
+        font-size: 2em;
+        text-transform: capitalize;
+    }
+
+    .dnd-text {
+        font-family: "Aclonica", Georgia, sans-serif;
     }
 
 </style>
@@ -42,15 +43,15 @@
             <div id="login-box" class="jumbotron">
                 <form id="login-form" role="form">
                     <div class="form-group">
-                        <label class="login-text" for="exampleInputEmail1">Email address</label>
+                        <label class="login-text dnd-text" for="exampleInputEmail1">Email address</label>
                         <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
                     </div>
                     <div class="form-group">
-                        <label class="login-text" for="exampleInputPassword1">Password</label>
+                        <label class="login-text dnd-text" for="exampleInputPassword1">Password</label>
                         <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
                     </div>
                     <div class="form-group">
-                        <button id="login-btn" type="submit" class="btn btn-lg btn-success">Login</button>
+                        <button id="login-btn" type="submit" class="btn btn-lg btn-success dnd-text">Login</button>
                     </div>
                 </form>
             </div>
