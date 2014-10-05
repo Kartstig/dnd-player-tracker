@@ -5,8 +5,9 @@ from Base import Base
 from bcrypt import hashpw, gensalt
 from sqlalchemy import Column, Integer, String, DateTime, Enum
 from datetime import datetime
+from flask.ext.login import UserMixin
 
-class User(Base):
+class User(Base, UserMixin):
 
     __tablename__ = 'users'
 
