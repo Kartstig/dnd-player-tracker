@@ -56,6 +56,9 @@
             <div id="login-box" class="jumbotron">
                 <div class="errors">
                     {{ form.errors }}
+                    {% if error %}
+                    <p class=error><strong>Error:</strong> {{ error }}
+                    {% endif %}
                 </div>
                 <form id="login-form" role="form" action="/login", method="post">
                     <div class="form-group">

@@ -4,7 +4,7 @@ from flask import Flask, request, session, g, redirect, url_for, \
      abort, render_template, flash, request
 from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.login import LoginManager, login_required, login_user, \
-    current_user
+    logout_user, current_user
 from Config import *
 from models import *
 from forms import *
@@ -32,25 +32,38 @@ def login():
     if request.method =='POST':
         form = LoginForm(request.form)
         if form.validate():
-            # login and validate the user...
-            login_user(user)
-            flash("Logged in successfully.")
-            return redirect(url_for("index"))
+            # .one() is not safe when user isn't present
+            user = db.session.query(User).filter_by(username=form.data['username']).first()
+            if user:
+                pass_check = user.valid_password(form.data['password'])
+                login_user(user)
+                flash("Logged in successfully.")
+                return redirect(url_for("index"))
+            else:
+                flash("Invalid Username")
         else:
             error = form.errors
-    return render_template("login.html", form=form)
+    return render_template("login.html", form=form, error=error)
 
 @app.route("/logout")
 @login_required
 def logout():
     logout_user()
-    return redirect(somewhere)
+    flash("Logged out successfully.")
+    return redirect(url_for("index"))
 
 @app.route('/races')
 def races():
+    flash("Logged in successfully.")
     races = db.session.query(Race).all()
     return render_template('races.html', races=races)
+
+@login_manager.user_loader
+def load_user(userid):
+    u = db.session.query(User).filter_by(id=userid).one()
+    return u if u else None
 
 
 if __name__ == '__main__':
     app.run()
+    
