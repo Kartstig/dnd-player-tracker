@@ -23,7 +23,7 @@ class User(Base, UserMixin):
     created_at      = Column(DateTime, nullable=False)
     updated_at      = Column(DateTime, nullable=False)
 
-    def __init__(self, username, password=None, first_name=None, last_name=None, 
+    def __init__(self, username, password, first_name=None, last_name=None, 
                  phone_number=None, role='user'):
         timestamp = datetime.now()
         self.username       = username
@@ -41,7 +41,7 @@ class User(Base, UserMixin):
 
     def valid_password(self, attempt):
         return (attempt and self.password 
-            and hashpw(attempt.encode('utf-8'), self.password) == self.password)
+            and hashpw(attempt.encode('utf-8'), self.password.encode('utf-8')) == self.password)
 
     def __repr__(self):
         return '<{}, {}>'.format(self.__class__.__name__, self.username)
