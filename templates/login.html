@@ -12,24 +12,37 @@
         border-radius: 1.5em;
         background: rgba(10, 10, 10, 0.7);
     }
+
     #login-form {
         margin: 1em;
     }
-    label.login-text {
+
+    .login-text {
         margin: 0.6em;
         color: rgba(255, 255, 255, 1);
         font-weight: 400;
         font-size: 2em;
     }
+
     #login-btn {
         margin-top: 2em;
         width: 100%;
-        font-size: 2em;
+        font-size: 1.8em;
+        text-transform: capitalize;
+    }
+
+    #signup-btn {
+        width: 100%;
+        font-size: 1.8em;
         text-transform: capitalize;
     }
 
     .dnd-text {
         font-family: "Aclonica", Georgia, sans-serif;
+    }
+
+    .center {
+        text-align: center;
     }
 
 </style>
@@ -52,6 +65,12 @@
                     </div>
                     <div class="form-group">
                         <button id="login-btn" type="submit" class="btn btn-lg btn-success dnd-text">Login</button>
+                    </div>
+                    <div class="form-group">
+                        <p class="login-text center dnd-text">Or</p>
+                    </div>
+                    <div class="form-group">
+                        <a id="signup-btn" class="btn btn-lg btn-primary dnd-text" href="/signup">Sign Up</a>
                     </div>
                 </form>
             </div>
