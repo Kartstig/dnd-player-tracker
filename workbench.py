@@ -85,6 +85,7 @@ def bootstrap_users():
     users = [
         {
             "username":     "kartstig@gmail.com",
+            "password":     "1234",
             "first_name":   "Herman",
             "last_name":    "Singh",
             "phone_number": "4105416360",
