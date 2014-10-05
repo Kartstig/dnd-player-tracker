@@ -36,9 +36,12 @@ def login():
             user = db.session.query(User).filter_by(username=form.data['username']).first()
             if user:
                 pass_check = user.valid_password(form.data['password'])
-                login_user(user)
-                flash("Logged in successfully.")
-                return redirect(url_for("index"))
+                if pass_check:
+                    login_user(user)
+                    flash("Logged in successfully.")
+                    return redirect(url_for("index"))
+                else:
+                    flash("Invalid Password")
             else:
                 flash("Invalid Username")
         else:
