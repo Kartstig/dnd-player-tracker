@@ -7,6 +7,7 @@ from flask.ext.login import LoginManager, login_required, login_user, \
     current_user
 from Config import *
 from models import *
+from forms import *
 
 # Main Application and Config
 app = Flask(__name__)
@@ -26,13 +27,18 @@ def index():
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
-    if request.form:
-        # login and validate the user...
-        login_user(user)
-        flash("Logged in successfully.")
-        return redirect(request.args.get("next") or url_for("index"))
-    else:
-        return render_template("login.html")
+    error = None
+    form = LoginForm()
+    if request.method =='POST':
+        form = LoginForm(request.form)
+        if form.validate():
+            # login and validate the user...
+            login_user(user)
+            flash("Logged in successfully.")
+            return redirect(url_for("index"))
+        else:
+            error = form.errors
+    return render_template("login.html", form=form)
 
 @app.route("/logout")
 @login_required
