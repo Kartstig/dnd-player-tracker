@@ -58,6 +58,11 @@ def races():
     races = db.session.query(Race).all()
     return render_template('races.html', races=races)
 
+@app.route('/signup', methods=["GET", "POST"])
+def signup():
+    form = SignupForm()
+    return render_template('signup.html', form=form)
+
 @login_manager.user_loader
 def load_user(userid):
     u = db.session.query(User).filter_by(id=userid).one()
@@ -66,4 +71,3 @@ def load_user(userid):
 
 if __name__ == '__main__':
     app.run()
-    

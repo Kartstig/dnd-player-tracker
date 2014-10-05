@@ -1,0 +1,72 @@
+html, body {
+    background: url(/static/images/dndback_reduced.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+#login-box {
+    margin-top: 30%;
+    margin-bottom: auto;
+    padding: 0.5em;
+    border: none;
+    border-radius: 1.5em;
+    background: rgba(10, 10, 10, 0.7);
+}
+
+#login-form {
+    margin: 1em;
+}
+
+.login-text {
+    margin: 0.6em;
+    color: rgba(255, 255, 255, 1);
+    font-weight: 400;
+    font-size: 2em;
+}
+
+#login-btn {
+    margin-top: 2em;
+    width: 100%;
+    font-size: 1.8em;
+    text-transform: capitalize;
+}
+
+#signup-btn {
+    width: 100%;
+    font-size: 1.8em;
+    text-transform: capitalize;
+}
+
+.dnd-text {
+    font-family: "Aclonica", Georgia, sans-serif;
+}
+
+.center {
+    text-align: center;
+}
+
+div.errors {
+    margin: 2em;
+    font-size: 1.5em;
+}
+
+#signup-form {
+    margin: 1em;
+}
+
+#signup-box {
+    margin-top: 30%;
+    margin-bottom: auto;
+    padding: 0.5em;
+    border: none;
+    border-radius: 1.5em;
+    background: rgba(10, 10, 10, 0.7);
+}
+.signup-text {
+    margin: 0.6em;
+    color: rgba(255, 255, 255, 1);
+    font-weight: 400;
+    font-size: 1.5em;
+}
