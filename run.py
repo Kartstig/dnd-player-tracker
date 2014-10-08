@@ -68,7 +68,15 @@ def signup():
     if request.method == 'POST':
         form = SignupForm(request.form)
         if form.validate():
-            flash("It Worked!")
+            try:
+                user = User(**form.data)
+                db.session.add(user)
+                db.session.commit()
+                flash("It Worked!")
+                redirect(url_for("index"))
+            except:
+                db.session.rollback()
+                flash("It Failed! :(")
         else:
             error = form.errors
     return render_template('signup.html', form=form, error=error)
