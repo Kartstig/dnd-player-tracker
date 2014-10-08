@@ -1,0 +1,11 @@
+name,description,school,components,level,range,damage,duration,casting_time,area,saving_throw,is_reversible
+Charm Person,,"Enchantment,Charm","V,S",1,120 yards,0,special,1,1 person,None,0
+Burning Hands,,Alteration,"V,S",1,0,1d3 + 2/level,instantaneous,1,120deg arc,1/2,0
+Comprehensive Language,,Alteration,"V,S,M",1,0,0,5 rounds/level,1,1 person/object,None,0
+Light,,Alteration,"V,S,M",1,60 yards,0,1 turn/level,1,20 feet,Special,1
+Magic Missile,,Evocation,"V,S",1,60 yards + 10 yards/level,(1d4 + 1)/missile,instantaneous,1,1 or more in 10ft3,None,0
+Protection from Evil,,Abjuration,"V,S,M",1,0,0,2 rounds/level,1,1 person,None,1
+Read Magic,,Divination,"V,S,M",1,0,0,2 rounds/level,1,Special,None,0
+Sheild,,Evocation,"V,S",1,0,0,5 rounds/level,1,Special,None,0
+Sleep,,"Enchantment,Charm","V,S,M",1,30 yards,0,5 rounds/level,1,Special,None,0
+Idenify,,Divination,"V,S,M",1,0,0,1 round/level,1,1 item/level,None,0
