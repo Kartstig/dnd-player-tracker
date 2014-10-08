@@ -1,46 +1,48 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html lang="en">
-	<head>
-		<!-- Bootstrap/Font Awesome -->
-		<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
-		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='libs/css/bootstrap.min.css') }}">
-		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='libs/font-awesome-4.0.3/css/font-awesome.min.css') }}">
-		<script src="{{ url_for('static', filename='libs/js/jquery-2.1.0.min.js') }}">
-		</script>
-		<script src="{{ url_for('static', filename='libs/js/bootstrap.min.js') }}">
-		</script>
+    <head>
+        <!-- Bootstrap/Font Awesome -->
+        <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='libs/css/bootstrap.min.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='libs/font-awesome-4.0.3/css/font-awesome.min.css') }}">
+        <script src="{{ url_for('static', filename='libs/js/jquery-2.1.0.min.js') }}">
+        </script>
+        <script src="{{ url_for('static', filename='libs/js/bootstrap.min.js') }}">
+        </script>
 
-		<!-- Bootstrap Mobile Response -->
-		<meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <!-- App Stylesheet -->
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='libs/css/dnd_main.css') }}">
 
-		<!-- Google Fonts -->
-		<script src="//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
-		<script>
-		  WebFont.load({
-		    google: {
-		      families: ['Aclonica']
-		    }
-		  });
-		</script>
+        <!-- Bootstrap Mobile Response -->
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-		<style type="text/css">
-		html, body {
-			background: url(static/images/dndback_reduced.jpg) no-repeat center center fixed; 
-			-webkit-background-size: cover;
-			-moz-background-size: cover;
-			-o-background-size: cover;
-			background-size: cover;
-		}
-		</style>
-		
-		<title>{% block title %}{% endblock %}</title>
-		{% block head %}
-		{% endblock %}
-	</head>
-	<body>
-		{% block content %}
-		{% endblock %}
-	</body>
+        <!-- Google Fonts -->
+        <script src="//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
+        <script>
+          WebFont.load({
+            google: {
+              families: ['Aclonica']
+            }
+          });
+        </script>
+
+        <title>{% block title %}{% endblock %}</title>
+        {% block head %}
+        {% endblock %}
+    </head>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul class="bg-primary">
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+    <body>
+        {% block content %}
+        {% endblock %}
+    </body>
 </html>

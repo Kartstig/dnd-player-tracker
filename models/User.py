@@ -5,8 +5,9 @@ from Base import Base
 from bcrypt import hashpw, gensalt
 from sqlalchemy import Column, Integer, String, DateTime, Enum
 from datetime import datetime
+from flask.ext.login import UserMixin
 
-class User(Base):
+class User(Base, UserMixin):
 
     __tablename__ = 'users'
 
@@ -14,7 +15,7 @@ class User(Base):
 
     id              = Column(Integer, primary_key=True)
     username        = Column(String(50), unique=True, nullable=False)
-    password        = Column(String(60))
+    password        = Column(String(60), nullable=False)
     first_name      = Column(String(50))
     last_name       = Column(String(50))
     phone_number    = Column(String(15))
@@ -22,7 +23,7 @@ class User(Base):
     created_at      = Column(DateTime, nullable=False)
     updated_at      = Column(DateTime, nullable=False)
 
-    def __init__(self, username, password=None, first_name=None, last_name=None, 
+    def __init__(self, username, password, first_name=None, last_name=None, 
                  phone_number=None, role='user'):
         timestamp = datetime.now()
         self.username       = username
@@ -40,7 +41,7 @@ class User(Base):
 
     def valid_password(self, attempt):
         return (attempt and self.password 
-            and hashpw(attempt.encode('utf-8'), self.password) == self.password)
+            and hashpw(attempt.encode('utf-8'), self.password.encode('utf-8')) == self.password)
 
     def __repr__(self):
         return '<{}, {}>'.format(self.__class__.__name__, self.username)
