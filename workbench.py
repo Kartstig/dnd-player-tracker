@@ -22,6 +22,9 @@ def bootstrap_spells():
             session.add(Spell(**spell))
     except:
         print "Failed."
+    c = session.query(Character).first()
+    for s in session.query(Spell).all():
+        c.spells.append(s)
 
 def bootstrap_characters():
     characters = [
