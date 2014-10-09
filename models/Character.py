@@ -3,6 +3,7 @@
 
 from Base import Base
 from sqlalchemy import Column, Integer, String, DateTime, Enum
+from sqlalchemy.orm import relationship, backref
 from datetime import datetime
 
 class Character(Base):
@@ -32,6 +33,10 @@ class Character(Base):
     user_id         = Column(Integer, nullable=False)
     created_at      = Column(DateTime, nullable=False)
     updated_at      = Column(DateTime, nullable=False)
+
+    spells          = relationship("Spell",
+                        secondary="spellbooks", 
+                        backref="casters")
 
     def __init__(self, name, strength, dexterity, constitution, intelligence, wisdom, 
                     charisma, sex, alignment, behavior, race_id, user_id, height=0, 
