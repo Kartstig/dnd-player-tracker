@@ -27,7 +27,7 @@ $ alembic upgrade head
 See [Alembic](http://alembic.readthedocs.org/en/latest/)
 and [SQLAlchemy](http://www.sqlalchemy.org/)
 
-### Run Server
+### Run localhost
 
 ```
 $ python enginv.py runserver
@@ -37,4 +37,15 @@ $ python enginv.py runserver
 
 ```
 $ python -i workbench.py
+```
+
+### Run Server Daemon
+
+```
+$ circusd --daemon circus.ini
+```
+
+And to kill the daemon
+```
+$ circusctl quit
 ```
