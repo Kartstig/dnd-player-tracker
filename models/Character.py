@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from Base import Base
-from sqlalchemy import Column, Integer, String, DateTime, Enum
+from sqlalchemy import Column, Integer, String, DateTime, Enum, ForeignKey
 from sqlalchemy.orm import relationship, backref
 from datetime import datetime
 
@@ -29,8 +29,8 @@ class Character(Base):
     weight          = Column(Integer)
     hair_color      = Column(String(50))
     age             = Column(String(50))
-    race_id         = Column(Integer, nullable=False)
-    user_id         = Column(Integer, nullable=False)
+    race_id         = Column(Integer, ForeignKey('races.id'), nullable=False)
+    user_id         = Column(Integer, ForeignKey('users.id'), nullable=False)
     created_at      = Column(DateTime, nullable=False)
     updated_at      = Column(DateTime, nullable=False)
 
