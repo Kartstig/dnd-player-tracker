@@ -66,11 +66,10 @@ def races():
 @app.route("/spells/<id>")
 def spells(id=None):
     if id:
-        spell = db.session.query(Spell).filter_by(id=id).one()
-        return render_template('spells.html', spells=[spell])
+        spells = [db.session.query(Spell).filter_by(id=id).one()]
     else:
         spells = db.session.query(Spell).all()
-        return render_template('spells.html', spells=spells)
+    return render_template('spells.html', spells=spells)
 
 @app.route('/signup', methods=["GET", "POST"])
 def signup():
