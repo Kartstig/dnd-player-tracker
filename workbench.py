@@ -12,6 +12,20 @@ def import_data():
     bootstrap_races()
     bootstrap_users()
     bootstrap_characters()
+    bootstrap_spells()
+
+def bootstrap_spells():
+    spells_import = csv_import('libs/resources/spells.csv')
+    try:
+        print "Building test spells..."
+        for spell in spells_import:
+            print "Spell: {}".format(spell['name'])
+            session.add(Spell(**spell))
+    except:
+        print "Failed."
+    c = session.query(Character).first()
+    for s in session.query(Spell).all():
+        c.spells.append(s)
 
 def bootstrap_characters():
     characters = [
@@ -41,8 +55,7 @@ def bootstrap_characters():
         for c in characters:
             session.add(Character(**c))
     except:
-        print "Failed. Rolling back..."
-        session.rollback()
+        print "Failed."
 
 
 
@@ -77,8 +90,7 @@ def bootstrap_races():
                 )
             )
     except:
-        print "Failed. Rolling back..."
-        session.rollback()
+        print "Failed."
 
 
 def bootstrap_users():
@@ -98,8 +110,7 @@ def bootstrap_users():
         for user in users:
             session.add(User(**user))
     except:
-        print "Failed. Rolling back..."
-        session.rollback()
+        print "Failed."
 
 def strip_sign(text):
     text = str(text)

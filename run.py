@@ -23,7 +23,8 @@ def index():
     if current_user.is_anonymous():
         return redirect(url_for("login"))
     else:
-        return render_template('main.html')
+        user = current_user
+        return render_template('main.html', user=user, characters=user.characters)
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -61,6 +62,16 @@ def races():
     races = db.session.query(Race).all()
     return render_template('races.html', races=races)
 
+@app.route("/spells")
+@app.route("/spells/<id>")
+def spells(id=None):
+    if id:
+        spell = db.session.query(Spell).filter_by(id=id).one()
+        return render_template('spells.html', spells=[spell])
+    else:
+        spells = db.session.query(Spell).all()
+        return render_template('spells.html', spells=spells)
+
 @app.route('/signup', methods=["GET", "POST"])
 def signup():
     error = None
@@ -85,7 +96,6 @@ def signup():
 def load_user(userid):
     u = db.session.query(User).filter_by(id=userid).one()
     return u if u else None
-
 
 if __name__ == '__main__':
     app.run()

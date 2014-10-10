@@ -4,6 +4,7 @@
 from Base import Base
 from bcrypt import hashpw, gensalt
 from sqlalchemy import Column, Integer, String, DateTime, Enum
+from sqlalchemy.orm import relationship, backref
 from datetime import datetime
 from flask.ext.login import UserMixin
 
@@ -22,6 +23,9 @@ class User(Base, UserMixin):
     role            = Column(Enum(*user_roles), default='user', nullable=False)
     created_at      = Column(DateTime, nullable=False)
     updated_at      = Column(DateTime, nullable=False)
+
+    characters      = relationship("Character",
+                        backref="user")
 
     def __init__(self, username, password, first_name=None, last_name=None, 
                  phone_number=None, role='user'):
