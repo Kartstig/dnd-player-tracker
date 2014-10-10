@@ -12,6 +12,7 @@ def import_data():
     bootstrap_races()
     bootstrap_users()
     bootstrap_characters()
+    bootstrap_spells()
 
 def bootstrap_spells():
     spells_import = csv_import('libs/resources/spells.csv')
