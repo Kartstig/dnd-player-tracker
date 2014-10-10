@@ -62,11 +62,11 @@ def races():
     races = db.session.query(Race).all()
     return render_template('races.html', races=races)
 
-@app.route("/spells")
+@app.route("/spells/")
 @app.route("/spells/<id>")
 def spells(id=None):
     if id:
-        spells = [db.session.query(Spell).filter_by(id=id).one()]
+        spells = [get_or_404(Spell, id)]
     else:
         spells = db.session.query(Spell).all()
     return render_template('spells.html', spells=spells)
@@ -93,8 +93,14 @@ def signup():
 
 @login_manager.user_loader
 def load_user(userid):
-    u = db.session.query(User).filter_by(id=userid).one()
+    u = get_or_404(User, userid)
     return u if u else None
+
+def get_or_404(model, ident):
+    rv = db.session.query(model).get(ident)
+    if rv is None:
+        abort(404)
+    return rv
 
 if __name__ == '__main__':
     app.run()
