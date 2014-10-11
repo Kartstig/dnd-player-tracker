@@ -25,44 +25,31 @@
     </div>
 
     <!-- Character List -->
-    {% for idx,c in enumerate(characters) %}
-        {% if idx % 3 == 0 %}
-        <div class="row">
-        {% endif %}
-        <div class="col-sm-6 col-md-4">
-            <div class="dnd-char-pad dnd-character">
-                <img src="/static/images/arnold.jpg" data-src="holder.js/100x100" alt="...">
-                <div class="caption">
-                    <p class="dnd-text header-text">{{c.name}}</p>
-                    <p class="dnd-text">Race:  {{c.race.name}}
-                    {% if c.race.sub_race %}
-                        ({{ c.race.sub_race }})
-                    {% endif %}
-                    </p>
-                    <p class="dnd-text">Level:  {{c.level}}</p>
-                    <p class="dnd-text">XP:  {{c.xp}}</p>
-                    <p>...</p>
-                    <p><a href="#" class="btn btn-primary" role="button">Play</a> <a href="#" class="btn btn-default" role="button">Edit</a></p>
-                </div>
-            </div>
-        </div>
-        {% if (idx != 0) and (idx % 3 == 0) %}
-        </div>
-        {% endif %}
-        <!--<div class="row">
-            <div class="col-md-1"></div>
-            <div class="col-md-10 dnd-text">
-                <div class="row jumbotron dnd-box">
-                    <div class="col-md-6 dnd-text">Name: {{c.name}}
-                    </div>
-                    <div class="col-md-6 dnd-text">
+    <div class="row">
+        {% for idx,c in enumerate(characters) %}
+            <div class="col-sm-6 col-md-4">
+                <div class="dnd-char-pad dnd-character">
+                    <img src="/static/images/arnold.jpg" data-src="holder.js/100x100" alt="...">
+                    <div class="caption">
+                        <p class="dnd-text header-text">{{c.name}}</p>
+                        <p class="dnd-text">Race:  {{c.race.name}}
+                        {% if c.race.sub_race %}
+                            ({{ c.race.sub_race }})
+                        {% endif %}
+                        </p>
+                        <p class="dnd-text">Level:  {{c.level}}</p>
+                        <p class="dnd-text">XP:  {{c.xp}}</p>
+                        <p>...</p>
+                        <p><a href="#" class="btn btn-primary" role="button">Play</a> <a href="#" class="btn btn-default" role="button">Edit</a></p>
                     </div>
                 </div>
             </div>
-            <div class="col-md-1"></div>
+            {% if ((idx+1) % 3 == 0 and idx != len(characters)) %}
             </div>
-        </div>-->
-    {% endfor %}
+            <div class="row">
+            {% endif %}
+        {% endfor %}
+    </div>
 
 </div>
 {% endblock %}
