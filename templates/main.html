@@ -4,33 +4,6 @@
 
 {% block head %}
 <style type="text/css">
-    #login-box {
-        margin-top: 30%;
-        margin-bottom: auto;
-        padding: 0.5em;
-        border: none;
-        border-radius: 1.5em;
-        background: rgba(10, 10, 10, 0.7);
-    }
-    #login-form {
-        margin: 1em;
-    }
-    label.login-text {
-        margin: 0.6em;
-        color: rgba(255, 255, 255, 1);
-        font-weight: 400;
-        font-size: 2em;
-    }
-    #login-btn {
-        margin-top: 2em;
-        width: 100%;
-        font-size: 2em;
-        text-transform: capitalize;
-    }
-
-    .dnd-text {
-        font-family: "Aclonica", Georgia, sans-serif;
-    }
 
 </style>
 {% endblock %}
@@ -38,11 +11,35 @@
 {% block content %}
 <div class="container">
     <div class="row">
-        <div class="col-md-3"></div>
-        <div class="col-md-6">
-        	<h1>Your Characters</h1>
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+        	<div class="row jumbotron dnd-box-header">  
+                <div class="col-md-6 dnd-text">Welcome {{ user.first_name }}
+                </div>
+                <div class="col-md-6 dnd-text right"> {{ datetime.now() }}
+                </div>
+                <p></p>
+            </div>
         </div>
-        <div class="col-md-3"></div>
+        <div class="col-md-1"></div>
     </div>
+
+    <!-- Character List -->
+    {% for c in characters %}
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10 dnd-text">
+                <div class="row jumbotron dnd-box">
+                    <div class="col-md-6 dnd-text">Name: {{c.name}}
+                    </div>
+                    <div class="col-md-6 dnd-text">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-1"></div>
+            </div>
+        </div>
+    {% endfor %}
+
 </div>
 {% endblock %}

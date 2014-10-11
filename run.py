@@ -8,6 +8,7 @@ from flask.ext.login import LoginManager, login_required, login_user, \
 from Config import *
 from models import *
 from forms import *
+from datetime import datetime
 
 # Main Application and Config
 app = Flask(__name__)
@@ -24,7 +25,7 @@ def index():
         return redirect(url_for("login"))
     else:
         user = current_user
-        return render_template('main.html', user=user, characters=user.characters)
+        return render_template('main.html', user=user, characters=user.characters, datetime=datetime)
 
 @app.route("/login", methods=["GET", "POST"])
 def login():

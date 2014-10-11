@@ -6,6 +6,29 @@ html, body {
     background-size: cover;
 }
 
+div.dnd-box-header {
+    padding: 5em;
+    border: none;
+    border-radius: 1.5em;
+    background: rgba(10, 10, 10, 0.7);
+    color: rgba(255, 255, 255, 1);
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+div.dnd-box {
+    padding: 5em;
+    border: none;
+    border-radius: 1.5em;
+    background: rgba(10, 10, 10, 0.7);
+    color: rgba(255, 255, 255, 1);
+}
+
+p.header-text {
+    font-weight: 400;
+    font-size: 2em;
+}
+
 #login-box {
     margin-top: 30%;
     margin-bottom: auto;
@@ -45,6 +68,14 @@ html, body {
 
 .center {
     text-align: center;
+}
+
+.right {
+    text-align: right;
+}
+
+.left {
+    text-align: left;
 }
 
 div.errors {
