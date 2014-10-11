@@ -25,7 +25,7 @@ def index():
         return redirect(url_for("login"))
     else:
         user = current_user
-        return render_template('main.html', user=user, characters=user.characters, datetime=datetime)
+        return render_template('main.html', enumerate=enumerate, user=user, characters=user.characters, datetime=datetime)
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
