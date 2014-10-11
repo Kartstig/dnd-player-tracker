@@ -25,8 +25,31 @@
     </div>
 
     <!-- Character List -->
-    {% for c in characters %}
+    {% for idx,c in enumerate(characters) %}
+        {% if idx % 3 == 0 %}
         <div class="row">
+        {% endif %}
+        <div class="col-sm-6 col-md-4">
+            <div class="dnd-char-pad dnd-character">
+                <img src="/static/images/arnold.jpg" data-src="holder.js/100x100" alt="...">
+                <div class="caption">
+                    <p class="dnd-text header-text">{{c.name}}</p>
+                    <p class="dnd-text">Race:  {{c.race.name}}
+                    {% if c.race.sub_race %}
+                        ({{ c.race.sub_race }})
+                    {% endif %}
+                    </p>
+                    <p class="dnd-text">Level:  {{c.level}}</p>
+                    <p class="dnd-text">XP:  {{c.xp}}</p>
+                    <p>...</p>
+                    <p><a href="#" class="btn btn-primary" role="button">Play</a> <a href="#" class="btn btn-default" role="button">Edit</a></p>
+                </div>
+            </div>
+        </div>
+        {% if (idx != 0) and (idx % 3 == 0) %}
+        </div>
+        {% endif %}
+        <!--<div class="row">
             <div class="col-md-1"></div>
             <div class="col-md-10 dnd-text">
                 <div class="row jumbotron dnd-box">
@@ -38,7 +61,7 @@
             </div>
             <div class="col-md-1"></div>
             </div>
-        </div>
+        </div>-->
     {% endfor %}
 
 </div>
