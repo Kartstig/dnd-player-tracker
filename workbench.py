@@ -88,6 +88,26 @@ def bootstrap_characters():
             "age":          70,
             "race_id":      session.query(Race).first().id,
             "user_id":      session.query(User).first().id
+        },
+        {
+            "name":         "Cartinonus VI",
+            "xp":           830,
+            "level":        1,
+            "strength":     3,
+            "dexterity":    12,
+            "constitution": 12,
+            "intelligence": 18,
+            "wisdom":       15,
+            "charisma":     9,
+            "sex":          "M",
+            "alignment":    "evil",
+            "behavior":     "Lawful",
+            "height":       163,
+            "weight":       77,
+            "hair_color":   "gray",
+            "age":          70,
+            "race_id":      session.query(Race).first().id,
+            "user_id":      session.query(User).first().id
         }
     ]
     try:
