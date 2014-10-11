@@ -30,7 +30,7 @@ def index():
             len=len,
             user=user, 
             characters=user.characters, 
-            datetime=datetime)
+            last_played=user.updated_at.strftime("%a, %b %d %Y"))
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
