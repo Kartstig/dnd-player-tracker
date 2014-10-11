@@ -48,6 +48,46 @@ def bootstrap_characters():
             "age":          70,
             "race_id":      session.query(Race).first().id,
             "user_id":      session.query(User).first().id
+        },
+        {
+            "name":         "Apollonius",
+            "xp":           10115,
+            "level":        4,
+            "strength":     11,
+            "dexterity":    12,
+            "constitution": 12,
+            "intelligence": 18,
+            "wisdom":       15,
+            "charisma":     9,
+            "sex":          "M",
+            "alignment":    "good",
+            "behavior":     "chaotic",
+            "height":       163,
+            "weight":       77,
+            "hair_color":   "gray",
+            "age":          70,
+            "race_id":      session.query(Race).first().id,
+            "user_id":      session.query(User).first().id
+        },
+        {
+            "name":         "Count Augustus",
+            "xp":           1130,
+            "level":        1,
+            "strength":     2,
+            "dexterity":    12,
+            "constitution": 12,
+            "intelligence": 18,
+            "wisdom":       15,
+            "charisma":     9,
+            "sex":          "M",
+            "alignment":    "evil",
+            "behavior":     "chaotic",
+            "height":       163,
+            "weight":       77,
+            "hair_color":   "gray",
+            "age":          70,
+            "race_id":      session.query(Race).first().id,
+            "user_id":      session.query(User).first().id
         }
     ]
     try:
