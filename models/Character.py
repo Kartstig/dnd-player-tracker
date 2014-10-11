@@ -9,7 +9,7 @@ from datetime import datetime
 class Character(Base):
 
     __tablename__ = 'characters'
-
+ 
     sex = ('M','F')
 
     id              = Column(Integer, primary_key=True)
@@ -37,6 +37,9 @@ class Character(Base):
     spells          = relationship("Spell",
                         secondary="spellbooks", 
                         backref="casters")
+
+    race            = relationship("Race",
+                        backref="characters")
 
     def __init__(self, name, strength, dexterity, constitution, intelligence, wisdom, 
                     charisma, sex, alignment, behavior, race_id, user_id, height=0, 
