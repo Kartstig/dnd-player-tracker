@@ -38,7 +38,7 @@
 
     <!-- Character List -->
     <div class="row">
-        {% for idx,c in enumerate(characters) %}
+        {% for c in characters %}
             <div class="col-sm-6 col-md-4">
                 <div class="dnd-char-pad dnd-character">
                     <img src="/static/images/arnold.jpg" data-src="holder.js/100x100" alt="...">
@@ -75,10 +75,6 @@
                     </div>
                 </div>
             </div>
-            {% if ((idx+1) % 3 == 0 and idx != len(characters)) %}
-            </div>
-            <div class="row">
-            {% endif %}
         {% endfor %}
     </div>
 

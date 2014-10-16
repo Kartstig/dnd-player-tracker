@@ -26,8 +26,6 @@ def index():
     else:
         user = current_user
         return render_template('main.html', 
-            enumerate=enumerate, 
-            len=len,
             user=user, 
             characters=user.characters, 
             last_played=user.updated_at.strftime("%a, %b %d %Y"))
