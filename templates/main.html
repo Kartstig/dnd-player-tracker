@@ -44,14 +44,33 @@
                     <img src="/static/images/arnold.jpg" data-src="holder.js/100x100" alt="...">
                     <div class="caption">
                         <p class="dnd-text header-text">{{c.name}}</p>
-                        <p class="dnd-text">Race:  {{c.race.name}}
-                        {% if c.race.sub_race %}
-                            ({{ c.race.sub_race }})
-                        {% endif %}
-                        </p>
-                        <p class="dnd-text">Level:  {{c.level}}</p>
-                        <p class="dnd-text">XP:  {{c.xp}}</p>
-                        <p>...</p>
+                        <table class="table dnd-text">
+                            <thead>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Race</td>
+                                    <td>
+                                    {{c.race.name}}
+                                    {% if c.race.sub_race %}
+                                        ({{ c.race.sub_race }})
+                                    {% endif %}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Level</td>
+                                    <td>{{c.level}}</td>
+                                </tr>
+                                <tr>
+                                    <td>XP</td>
+                                    <td>{{c.xp}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Last Played</td>
+                                    <td>{{c.updated_at}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
                         <p><a href="/characters/{{c.id}}" class="btn btn-primary" role="button">Play</a> <a href="/characters/{{c.id}}/edit" class="btn btn-default" role="button">Edit</a></p>
                     </div>
                 </div>
