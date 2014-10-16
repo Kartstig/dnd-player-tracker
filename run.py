@@ -8,6 +8,7 @@ from flask.ext.login import LoginManager, login_required, login_user, \
 from Config import *
 from models import *
 from forms import *
+from datetime import datetime
 
 # Main Application and Config
 app = Flask(__name__)
@@ -24,7 +25,10 @@ def index():
         return redirect(url_for("login"))
     else:
         user = current_user
-        return render_template('main.html', user=user, characters=user.characters)
+        return render_template('main.html', 
+            user=user, 
+            characters=user.characters, 
+            last_played=user.updated_at.strftime("%a, %b %d %Y"))
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -39,6 +43,9 @@ def login():
                 pass_check = user.valid_password(form.data['password'])
                 if pass_check:
                     login_user(user)
+                    # Update last login
+                    user.updated_at = datetime.now()
+                    db.session.commit()
                     flash("Logged in successfully.")
                     return redirect(url_for("index"))
                 else:

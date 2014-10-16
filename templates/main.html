@@ -4,33 +4,6 @@
 
 {% block head %}
 <style type="text/css">
-    #login-box {
-        margin-top: 30%;
-        margin-bottom: auto;
-        padding: 0.5em;
-        border: none;
-        border-radius: 1.5em;
-        background: rgba(10, 10, 10, 0.7);
-    }
-    #login-form {
-        margin: 1em;
-    }
-    label.login-text {
-        margin: 0.6em;
-        color: rgba(255, 255, 255, 1);
-        font-weight: 400;
-        font-size: 2em;
-    }
-    #login-btn {
-        margin-top: 2em;
-        width: 100%;
-        font-size: 2em;
-        text-transform: capitalize;
-    }
-
-    .dnd-text {
-        font-family: "Aclonica", Georgia, sans-serif;
-    }
 
 </style>
 {% endblock %}
@@ -38,11 +11,72 @@
 {% block content %}
 <div class="container">
     <div class="row">
-        <div class="col-md-3"></div>
-        <div class="col-md-6">
-        	<h1>Your Characters</h1>
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+        	<div class="row jumbotron dnd-box-header">  
+                <div class="col-xs-6 dnd-text">
+                    Welcome {{ user.first_name }}</br>
+                    Last Login: {{ last_played }}
+                </div>
+                <div class="col-xs-6 right">
+                    <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                            Menu
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dropdownMenu1">
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="/">Profile</a></li>
+                            <li role="presentation" class="divider"></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="/logout">Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col-md-3"></div>
+        <div class="col-md-1"></div>
     </div>
+
+    <!-- Character List -->
+    <div class="row">
+        {% for c in characters %}
+            <div class="col-sm-6 col-md-4">
+                <div class="dnd-char-pad dnd-character">
+                    <img src="/static/images/arnold.jpg" data-src="holder.js/100x100" alt="...">
+                    <div class="caption">
+                        <p class="dnd-text header-text">{{c.name}}</p>
+                        <table class="table dnd-text">
+                            <thead>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Race</td>
+                                    <td>
+                                    {{c.race.name}}
+                                    {% if c.race.sub_race %}
+                                        ({{ c.race.sub_race }})
+                                    {% endif %}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Level</td>
+                                    <td>{{c.level}}</td>
+                                </tr>
+                                <tr>
+                                    <td>XP</td>
+                                    <td>{{c.xp}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Last Played</td>
+                                    <td>{{c.updated_at}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p><a href="/characters/{{c.id}}" class="btn btn-primary" role="button">Play</a> <a href="/characters/{{c.id}}/edit" class="btn btn-default" role="button">Edit</a></p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
 </div>
 {% endblock %}
