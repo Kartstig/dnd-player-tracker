@@ -78,6 +78,21 @@ def spells(id=None):
         spells = db.session.query(Spell).all()
     return render_template('spells.html', spells=spells)
 
+@app.route("/characters/")
+@app.route("/characters/<id>")
+@login_required
+def characters(id=None):
+    if id:
+        user = current_user
+        character = get_or_404(Character, id)
+        if character.user == user:
+            return render_template('character.html', character=character)
+        else:
+            return 403
+    else:
+        characters = db.session.query(Spell).all()
+        return render_template('characters.html', characters=characters)
+
 @app.route('/signup', methods=["GET", "POST"])
 def signup():
     error = None
