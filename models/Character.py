@@ -31,6 +31,7 @@ class Character(Base):
     age             = Column(String(50))
     race_id         = Column(Integer, ForeignKey('races.id'), nullable=False)
     user_id         = Column(Integer, ForeignKey('users.id'), nullable=False)
+    user_id         = Column(Integer, ForeignKey('classes.id'), nullable=False)
     created_at      = Column(DateTime, nullable=False)
     updated_at      = Column(DateTime, nullable=False)
 
