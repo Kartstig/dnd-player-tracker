@@ -45,6 +45,9 @@ def login():
                 pass_check = user.valid_password(form.data['password'])
                 if pass_check:
                     login_user(user)
+                    # Update last login
+                    user.updated_at = datetime.now()
+                    db.session.commit()
                     flash("Logged in successfully.")
                     return redirect(url_for("index"))
                 else:
