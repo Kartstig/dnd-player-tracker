@@ -31,7 +31,7 @@ class Character(Base):
     age             = Column(String(50))
     race_id         = Column(Integer, ForeignKey('races.id'), nullable=False)
     user_id         = Column(Integer, ForeignKey('users.id'), nullable=False)
-    user_id         = Column(Integer, ForeignKey('classes.id'), nullable=False)
+    class_id        = Column(Integer, ForeignKey('classes.id'), nullable=False)
     created_at      = Column(DateTime, nullable=False)
     updated_at      = Column(DateTime, nullable=False)
 
@@ -42,9 +42,12 @@ class Character(Base):
     race            = relationship("Race",
                         backref="characters")
 
+    _class          = relationship("Class",
+                        backref="characters")
+
     def __init__(self, name, strength, dexterity, constitution, intelligence, wisdom, 
-                    charisma, sex, alignment, behavior, race_id, user_id, height=0, 
-                    weight=0, hair_color=None, age=None, xp=0, level=1):
+                    charisma, sex, alignment, behavior, race_id, user_id, class_id, 
+                    height=0, weight=0, hair_color=None, age=None, xp=0, level=1):
         timestamp = datetime.now()
         self.name           = name
         self.xp             = xp
@@ -64,8 +67,20 @@ class Character(Base):
         self.age            = age
         self.race_id        = race_id
         self.user_id        = user_id
+        self.class_id       = class_id
         self.created_at     = timestamp
         self.updated_at     = timestamp
+
+    def xp_factor(self):
+        if self.strength >= self._class.min_str and \
+                self.dexterity >= self._class.min_dex and \
+                self.constitution >= self._class.min_con and \
+                self.intelligence >= self._class.min_int and \
+                self.wisdom >= self._class.min_wis and \
+                self.charisma >= self._class.min_char:
+            return 1.1
+        else:
+            return 1
 
     def __repr__(self):
         return '<{}, {}>'.format(self.__class__.__name__, self.name)
