@@ -10,6 +10,7 @@ from models import *
 
 def import_data():
     bootstrap_races()
+    bootstrap_classes()
     bootstrap_users()
     bootstrap_characters()
     bootstrap_spells()
@@ -26,6 +27,16 @@ def bootstrap_spells():
     c = session.query(Character).first()
     for s in session.query(Spell).all():
         c.spells.append(s)
+
+def bootstrap_classes():
+    class_import = csv_import('libs/resources/classes.csv')
+    try:
+        print "Building test classes..."
+        for _class in class_import:
+            print "Class: {}".format(_class['name'])
+            session.add(Class(**_class))
+    except:
+        print "Failed."
 
 def bootstrap_characters():
     characters = [
@@ -47,7 +58,8 @@ def bootstrap_characters():
             "hair_color":   "gray",
             "age":          70,
             "race_id":      session.query(Race).first().id,
-            "user_id":      session.query(User).first().id
+            "user_id":      session.query(User).first().id,
+            "class_id":     session.query(Class).first().id
         },
         {
             "name":         "Apollonius",
@@ -67,7 +79,8 @@ def bootstrap_characters():
             "hair_color":   "gray",
             "age":          70,
             "race_id":      session.query(Race).first().id,
-            "user_id":      session.query(User).first().id
+            "user_id":      session.query(User).first().id,
+            "class_id":     session.query(Class).first().id
         },
         {
             "name":         "Count Augustus",
@@ -87,7 +100,8 @@ def bootstrap_characters():
             "hair_color":   "gray",
             "age":          70,
             "race_id":      session.query(Race).first().id,
-            "user_id":      session.query(User).first().id
+            "user_id":      session.query(User).first().id,
+            "class_id":     session.query(Class).first().id
         },
         {
             "name":         "Cartinonus VI",
@@ -107,7 +121,8 @@ def bootstrap_characters():
             "hair_color":   "gray",
             "age":          70,
             "race_id":      session.query(Race).first().id,
-            "user_id":      session.query(User).first().id
+            "user_id":      session.query(User).first().id,
+            "class_id":     session.query(Class).first().id
         }
     ]
     try:
