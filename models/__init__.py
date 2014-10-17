@@ -7,3 +7,4 @@ from Character import Character
 from Race import Race
 from Spell import Spell
 from Spellbook import Spellbook
+from Class import Class
