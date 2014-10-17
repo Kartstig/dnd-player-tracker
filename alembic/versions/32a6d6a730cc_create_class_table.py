@@ -19,6 +19,13 @@ def upgrade():
         'classes',
         sa.Column('id', sa.Integer, primary_key=True),
         sa.Column('name', sa.String(50), nullable=False),
+        sa.Column('sub_class', sa.String(50)),
+        sa.Column('min_str', sa.Integer, nullable=False, default=0),
+        sa.Column('min_dex', sa.Integer, nullable=False, default=0),
+        sa.Column('min_con', sa.Integer, nullable=False, default=0),
+        sa.Column('min_int', sa.Integer, nullable=False, default=0),
+        sa.Column('min_wis', sa.Integer, nullable=False, default=0),
+        sa.Column('min_char', sa.Integer, nullable=False, default=0),
         sa.Column('created_at', sa.DateTime, nullable=False),
         sa.Column('updated_at', sa.DateTime, nullable=False)
         )
