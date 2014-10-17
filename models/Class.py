@@ -27,6 +27,13 @@ class Class(Base):
                     min_con=0, min_int=0, min_wis=0, min_char=0):
         timestamp = datetime.now()
         self.name           = name
+        self.sub_class      = sub_class
+        self.min_str        = min_str
+        self.min_dex        = min_dex
+        self.min_con        = min_con
+        self.min_int        = min_int
+        self.min_wis        = min_wis
+        self.min_char       = min_char
         self.created_at     = timestamp
         self.updated_at     = timestamp
 
