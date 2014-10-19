@@ -82,5 +82,8 @@ class Character(Base):
         else:
             return 1
 
+    def last_played(self):
+        return self.updated_at.strftime("%a, %b %d %Y")
+
     def __repr__(self):
         return '<{}, {}>'.format(self.__class__.__name__, self.name)
