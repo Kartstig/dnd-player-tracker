@@ -3,8 +3,7 @@
 
 import csv
 import re
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
+from db import get_session
 from Config import *
 from models import *
 
@@ -221,6 +220,5 @@ def csv_import(filename):
         return container
 
 if __name__ == '__main__':
-    engine = create_engine(DevelopmentConfig.SQLALCHEMY_DATABASE_URI)
-    session = sessionmaker(bind=engine)()
+    session = get_session()
 
