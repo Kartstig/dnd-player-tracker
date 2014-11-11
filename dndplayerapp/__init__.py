@@ -1,19 +1,19 @@
 #!/usr/bin/ python
 # -*- coding: utf-8 -*-
 from models import *
+from forms import *
 from flask import Flask, request, session, g, redirect, url_for, \
      abort, render_template, flash, request
-from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.login import LoginManager, login_required, login_user, \
     logout_user, current_user
-from Config import *
-from forms import *
+from config import get_config
+from db import get_session
 from datetime import datetime
 
 # Main Application and Config
 app = Flask(__name__)
-app.config.from_object('Config.DevelopmentConfig')
-db = SQLAlchemy(app)
+app.config.from_object(get_config())
+session = get_session()
 
 # Login Manager
 login_manager = LoginManager()
@@ -38,14 +38,14 @@ def login():
         form = LoginForm(request.form)
         if form.validate():
             # .one() is not safe when user isn't present
-            user = db.session.query(User).filter_by(username=form.data['username']).first()
+            user = session.query(User).filter_by(username=form.data['username']).first()
             if user:
                 pass_check = user.valid_password(form.data['password'])
                 if pass_check:
                     login_user(user)
                     # Update last login
                     user.updated_at = datetime.now()
-                    db.session.commit()
+                    session.commit()
                     flash("Logged in successfully.")
                     return redirect(url_for("index"))
                 else:
@@ -66,7 +66,7 @@ def logout():
 @app.route('/races')
 def races():
     flash("Logged in successfully.")
-    races = db.session.query(Race).all()
+    races = session.query(Race).all()
     return render_template('races.html', races=races)
 
 @app.route("/spells/")
@@ -75,7 +75,7 @@ def spells(id=None):
     if id:
         spells = [get_or_404(Spell, id)]
     else:
-        spells = db.session.query(Spell).all()
+        spells = session.query(Spell).all()
     return render_template('spells.html', spells=spells)
 
 @app.route("/characters/")
@@ -90,7 +90,7 @@ def characters(id=None):
         else:
             return 403
     else:
-        characters = db.session.query(Spell).all()
+        characters = session.query(Spell).all()
         return render_template('characters.html', characters=characters)
 
 @app.route('/signup', methods=["GET", "POST"])
@@ -102,12 +102,12 @@ def signup():
         if form.validate():
             try:
                 user = User(**form.data)
-                db.session.add(user)
-                db.session.commit()
+                session.add(user)
+                session.commit()
                 flash("It Worked!")
                 redirect(url_for("index"))
             except:
-                db.session.rollback()
+                session.rollback()
                 flash("It Failed! :(")
         else:
             error = form.errors
@@ -119,7 +119,7 @@ def load_user(userid):
     return u if u else None
 
 def get_or_404(model, ident):
-    rv = db.session.query(model).get(ident)
+    rv = session.query(model).get(ident)
     if rv is None:
         abort(404)
     return rv
