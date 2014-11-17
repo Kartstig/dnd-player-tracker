@@ -3,9 +3,8 @@
 
 import csv
 import re
-from db import get_session
-from Config import *
-from models import *
+from dndplayerapp.db import get_session
+from dndplayerapp.models import *
 
 def import_data():
     bootstrap_races()
